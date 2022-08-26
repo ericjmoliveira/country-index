@@ -2,6 +2,8 @@ import Head from 'next/head';
 import { gql } from '@apollo/client';
 
 import client from '../graphql/client';
+import { Container, Header, Countries } from '../styles/home';
+import Card from '../components/Card';
 
 export async function getStaticProps() {
     const { data } = await client.query({
@@ -29,16 +31,16 @@ export default function Home({ countries }) {
             <Head>
                 <title>Country Index</title>
             </Head>
-            <div>
-                <h1>Country Index</h1>
-                <ul>
+            <Container>
+                <Header>
+                    <h1>Country Index</h1>
+                </Header>
+                <Countries>
                     {countries.map((country) => (
-                        <li key={country.code}>
-                            {country.emoji} {country.name}
-                        </li>
+                        <Card key={country.code} countryData={country} />
                     ))}
-                </ul>
-            </div>
+                </Countries>
+            </Container>
         </>
     );
 }
