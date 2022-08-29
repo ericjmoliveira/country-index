@@ -21,6 +21,7 @@ export const Container = styled.div`
     }
 
     a {
+        margin-bottom: 0.5rem;
         background: transparent;
         border: 1px solid #fff;
         border-radius: 5px;
