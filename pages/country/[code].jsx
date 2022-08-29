@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { gql } from '@apollo/client';
 
 import client from '../../graphql/client';
+import { Container, Header, Info } from '../../styles/country';
 
 export async function getStaticPaths() {
     const { data } = await client.query({
@@ -67,13 +68,13 @@ export default function Country({ country }) {
             <Head>
                 <title>{country.name}</title>
             </Head>
-            <main>
-                <header>
+            <Container>
+                <Header>
                     <h1>
                         {country.emoji} <span>{country.name}</span>
                     </h1>
-                </header>
-                <section>
+                </Header>
+                <Info>
                     <p>
                         Native name <span>{country.native}</span>
                     </p>
@@ -84,7 +85,7 @@ export default function Country({ country }) {
                         Capital <span>{country.capital ? country.capital : 'None'}</span>
                     </p>
                     <p>
-                        Main language{' '}
+                        Main language
                         <span>
                             {country.languages.length > 0 ? country.languages[0].name : 'None'}
                         </span>
@@ -111,11 +112,11 @@ export default function Country({ country }) {
                             </a>
                         </p>
                         <p>
-                            <Link href={'/'}>See all the countries</Link>
+                            <Link href="/">See all the countries</Link>
                         </p>
                     </div>
-                </section>
-            </main>
+                </Info>
+            </Container>
         </>
     );
 }
