@@ -14,8 +14,8 @@ export const Header = styled.header`
 `;
 
 export const Countries = styled.section`
-    padding: 1rem;
+    padding: 1.5rem 2rem;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 1rem;
+    gap: 2rem;
 `;

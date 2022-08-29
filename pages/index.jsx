@@ -33,7 +33,7 @@ export default function Home({ countries }) {
             </Head>
             <Container>
                 <Header>
-                    <h1>Country Index</h1>
+                    <h1>🌎︎ Country Index</h1>
                 </Header>
                 <Countries>
                     {countries.map((country) => (
