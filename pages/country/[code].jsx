@@ -1,3 +1,5 @@
+import Head from 'next/head';
+import Link from 'next/link';
 import { gql } from '@apollo/client';
 
 import client from '../../graphql/client';
@@ -45,7 +47,6 @@ export async function getStaticProps(context) {
                     currency
                     languages {
                         name
-                        native
                     }
                     emoji
                 }
@@ -62,8 +63,59 @@ export async function getStaticProps(context) {
 
 export default function Country({ country }) {
     return (
-        <div>
-            <h1>More info about {country.name}</h1>
-        </div>
+        <>
+            <Head>
+                <title>{country.name}</title>
+            </Head>
+            <main>
+                <header>
+                    <h1>
+                        {country.emoji} <span>{country.name}</span>
+                    </h1>
+                </header>
+                <section>
+                    <p>
+                        Native name <span>{country.native}</span>
+                    </p>
+                    <p>
+                        Continent located <span>{country.continent.name}</span>
+                    </p>
+                    <p>
+                        Capital <span>{country.capital ? country.capital : 'None'}</span>
+                    </p>
+                    <p>
+                        Main language{' '}
+                        <span>
+                            {country.languages.length > 0 ? country.languages[0].name : 'None'}
+                        </span>
+                    </p>
+                    <p>
+                        Phone code <span>+{country.phone}</span>
+                    </p>
+                    <p>
+                        Country code <span>{country.code}</span>
+                    </p>
+                    <p>
+                        Currency <span>{country.currency ? country.currency : 'None'}</span>
+                    </p>
+                    <div>
+                        <p>
+                            <a
+                                href={`https://en.wikipedia.org/wiki/${country.name
+                                    .split(' ')
+                                    .join('_')}`}
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                Go to the wikipedia page
+                            </a>
+                        </p>
+                        <p>
+                            <Link href={'/'}>See all the countries</Link>
+                        </p>
+                    </div>
+                </section>
+            </main>
+        </>
     );
 }
